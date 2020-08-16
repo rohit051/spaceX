@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <h2><strong>SpaceX Launch Programs</strong></h2>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Filters</h4>
+                    <div class="mb-2">
+                    <p class="card-text">
+                       <span>Launch Year</span>
+                    </p>
+                    <div class="row row-cols-sm-2">
+                        <div class="col-sm-6 button-year" *ngFor = "let year of filterYear; index as i">
+                            <button class="btn btn-success" (click)="onYearButtonClick(year, i)" [ngClass]="{'active':isClicked[i]}">{{year}}</button>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="mb-2">
+                        <p class="card-text">
+                           <span>Successful Launch</span>
+                        </p>
+                        <div class="row row-cols-sm-2">
+                            <div class="col-sm-6 button-year">
+                                <button class="btn btn-success"  (click)="onlclickSuccessfulLaunch(true, 0)" [ngClass]="{'active':isLaunchClicked[0]}" >True</button>
+                            </div>
+                            <div class="col-sm-6 button-year">
+                                <button class="btn btn-success" (click)="onlclickSuccessfulLaunch(false, 1)" [ngClass]="{'active':isLaunchClicked[1]}">False</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <p class="card-text">
+                           <span>Successful Landing</span>
+                        </p>
+                        <div class="row row-cols-sm-2">
+                            <div class="col-sm-6 button-year">
+                                <button class="btn btn-success"  (click)="onlclickSuccessfulLanding(true, 0)" [ngClass]="{'active':isLandingClicked[0]}" >True</button>
+                            </div>
+                            <div class="col-sm-6 button-year">
+                                <button class="btn btn-success"  (click)="onlclickSuccessfulLanding(false, 1)" [ngClass]="{'active':isLandingClicked[1]}">False</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-12 col-lg-10">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+                <div class="col mb-4" *ngFor="let spacex of spaceXData; index as i" >
+                    <div class="card">
+                        <div class="img-body">
+                            <img src="{{spacex.links.mission_patch}}" class="card-img-top" alt="{{spacex.mission_name}}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mission-name"> <strong>{{spacex.mission_name}} # {{i+1}} </strong> </h5>
+                            <div class="row row-cols-md-2">
+                                <div class="col-md-12 mission-info mb-2">
+                                    <h5><strong>Mission Ids:</strong> </h5>
+                                    <p>{{spacex.mission_id | arrtoStr}}</p>
+                                </div>
+                                <div class="col-md-12 mission-info mb-2">
+                                    <h5><strong>Launch Year:</strong> </h5>
+                                    <p>{{spacex.launch_year}}</p>
+                                </div>
+                                <div class="col-md-12 mission-info mb-2">
+                                    <h5><strong>Successful Launch:</strong> </h5>
+                                    <p>{{spacex.launch_success}}</p>
+                                </div>
+                                <div class="col-md-12 mission-info mb-2">
+                                    <h5><strong>Successful Landing:</strong> </h5>
+                                    <p>{{spacex.rocket.first_stage.cores[0].land_success}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

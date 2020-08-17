@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "http-server",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,8 +12,7 @@
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run spaceX:server:production --bundleDependencies all",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build && mv dist/* ."
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
